@@ -1,0 +1,9 @@
+package com.hcl.ecommerce.service;
+
+import com.hcl.ecommerce.dto.StoreReviewDto;
+
+public interface StoreReviewService {
+	
+	String storeReview(StoreReviewDto storeReviewDto);
+
+}

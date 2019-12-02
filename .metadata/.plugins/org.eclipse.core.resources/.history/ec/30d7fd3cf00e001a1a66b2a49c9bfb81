@@ -1,0 +1,33 @@
+package com.hcl.ecommerce.service;
+
+import static org.mockito.Mockito.when;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.hcl.ecommerce.dto.StoreDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+import com.hcl.ecommerce.repository.StoreRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class StoreServiceTest {
+	
+	@InjectMocks
+	StoreServiceImpl storeService;
+	
+	@Mock
+	StoreRepository storeRepository;
+	
+	@Test
+	public void saveProductDetailsTest()    {
+		 StoreDto storeDto = new StoreDto();
+		    storeDto.setStoreLocation("jiganee");;
+	     when(storeRepository.findOne(storeDto.getStoreLocation())).thenReturn(new Product());
+	     storeService.saveStoreDetails(storeDto);
+	}
+
+}

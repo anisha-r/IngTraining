@@ -1,0 +1,15 @@
+package com.hcl.ecommerce.service;
+
+import com.hcl.ecommerce.dto.StoreDto;
+
+/**
+ * This StoreService Interface has one method
+ * @author Anisha
+ *
+ */
+public interface StoreService {
+	
+	String saveStoreDetails(StoreDto storeDto);
+
+
+}

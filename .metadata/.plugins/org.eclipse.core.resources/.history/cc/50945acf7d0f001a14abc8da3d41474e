@@ -1,0 +1,46 @@
+package com.hcl.ecommerce.service;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.hcl.ecommerce.dto.ProductDto;
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.dto.StoreDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.Store;
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductStoreServiceTest {
+	
+	@InjectMocks
+	ProductStoreServiceImpl productStoreService;
+	
+	@Mock
+	ProductStoreRepository productStoreRepository;
+	
+	@Test
+	public void saveProductStoreDetailsTest()    {
+		ProductStore productDto = new ProductStore();
+		productDto.setProductId(1);
+		ProductStoreDto  productStoreDto = new ProductStoreDto();
+		productStoreDto.setProductId(1);
+		List<ProductStore> list = new ArrayList<ProductStore>();
+		list.add(productDto);
+	     when(productStoreRepository.findByProductId(productStoreDto.getProductId())).thenReturn(list);
+	     productStoreService.saveProductStoreDetails(productStoreDto);
+	     assertNotNull(productStoreDto);
+	     }
+
+}

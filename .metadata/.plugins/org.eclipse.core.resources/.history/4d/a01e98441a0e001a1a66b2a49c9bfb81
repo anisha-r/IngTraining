@@ -1,0 +1,26 @@
+package com.hcl.ecommerce.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.dto.ProductDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.repository.ProductRepository;
+
+@Service
+public class ProductServiceImpl implements ProductService{
+	
+	@Autowired
+	ProductRepository productRepository;
+
+	@Override
+	public String saveProductDetails(ProductDto productDto) {
+		Product product = new Product();
+		product.setPrice(productDto.getPrice());
+		product.getProductId();
+		product.setProductName( productDto.getProductName());
+		productRepository.save(product);
+		return "Saved";
+	}
+
+}

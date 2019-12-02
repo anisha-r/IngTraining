@@ -1,0 +1,27 @@
+package com.hcl.ecommerce.service;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.dto.StoreReviewDto;
+
+@Service
+public class StoreReviewServiceImpl implements StoreReviewService{
+
+
+
+		@Override
+		public String storeReview(StoreReviewDto storeReviewDto) {
+			List<Integer> list = Arrays.asList(storeReviewDto.getUserId()); 
+			long userCount = list.stream().count(); 
+			Integer rating = storeReviewDto.getRating();
+			long noOfRatings = rating/userCount;
+			return "OverALLRatings is :" +noOfRatings;
+		    }
+			
+		}
+
+

@@ -1,0 +1,17 @@
+package com.hcl.ecommerce.service;
+
+import java.util.List;
+
+import com.hcl.ecommerce.dto.ProductDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.exception.ProductNotFoundException;
+
+public interface ProductService {
+	
+	String saveProductDetails(ProductDto productDto);
+	
+	List<Product> getDetails(String productName) throws ProductNotFoundException;
+
+	Product save(Product product);
+
+}

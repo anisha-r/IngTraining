@@ -1,0 +1,29 @@
+package com.hcl.ecommerce.service;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductStoreServiceTest {
+	
+	@InjectMocks
+	ProductStoreServiceImpl productStoreService;
+	
+	@Mock
+	ProductStoreRepository productStoreRepository;
+	
+	@Test
+	public void saveProductStoreDetailsTest() {
+		
+	     
+		
+		
+	     }
+	
+
+}

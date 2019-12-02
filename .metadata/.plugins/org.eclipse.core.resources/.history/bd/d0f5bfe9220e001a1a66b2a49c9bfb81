@@ -1,0 +1,32 @@
+package com.hcl.ecommerce.service;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.dto.StoreReviewDto;
+import com.hcl.ecommerce.entity.StoreReview;
+import com.hcl.ecommerce.repository.StoreReviewRepository;
+
+@Service
+public class StoreReviewServiceImpl implements StoreReviewService{
+
+@Autowired
+StoreReviewRepository storeReviewRepository;
+
+		@Override
+		public String storeReview(StoreReviewDto storeReviewDto) {
+			StoreReview storeReview = storeReviewRepository.findByStoreId(storeReviewDto.getStoreId());
+			List<Integer> list = Arrays.asList(storeReviewDto.getUserId()); 
+			long userCount = list.stream().count(); 
+			Integer rating = storeReviewDto.getRating();
+			long noOfRatings = rating/userCount;
+			return "OverALLRatings is :" +noOfRatings;
+		    }
+			
+		}
+
+

@@ -1,0 +1,9 @@
+1574169513676	Rename type 'AvailableSpotInterface'
+1574169523424	Rename type 'EmployeeSpotInterface'
+1574169540383	Rename type 'ParkingSpotInterface'
+1574183176235	Rename type 'EmployeeSpot'
+1574183256738	Rename type 'EmployeeSpotRepository'
+1574183275329	Rename type 'EmployeeSpotServiceImpl'
+1574183317938	Rename type 'EmployeeSpotService'
+1574183334931	Rename type 'EmployeeSpotController'
+1574418552562	Copy package

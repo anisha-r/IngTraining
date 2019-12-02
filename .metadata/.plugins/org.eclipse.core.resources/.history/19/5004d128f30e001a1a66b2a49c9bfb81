@@ -1,0 +1,38 @@
+package com.hcl.ecommerce.controller;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.hcl.ecommerce.repository.ProductRepository;
+import com.hcl.ecommerce.service.ProductService;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductControllerTest {
+	
+	@InjectMocks
+    ProductController productController;
+     
+    @Mock
+    ProductService productService;
+     
+    @Test
+    public void testAddEmployee()
+    {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+         
+        when(productService.saveProductDetails(productDto).addEmployee(any(Product.class))).thenReturn(true);
+         
+        Employee employee = new Employee(1, "Lokesh", "Gupta", "howtodoinjava@gmail.com");
+        ResponseEntity<Object> responseEntity = employeeController.addEmployee(employee);
+         
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
+        assertThat(responseEntity.getHeaders().getLocation().getPath()).isEqualTo("/1");
+    }
+}

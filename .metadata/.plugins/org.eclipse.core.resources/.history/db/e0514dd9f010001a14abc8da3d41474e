@@ -1,0 +1,21 @@
+package com.hcl.ecommerce.repository;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.hcl.ecommerce.entity.Product;
+/**
+ * This is Product Repository method  and it contains three methods.
+ * @author User1
+ *
+ */
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+	Product findByProductId(Integer productId);
+
+	List<Product> findByProductName(String productName);
+
+	Product findByPrice(Integer price);
+
+}

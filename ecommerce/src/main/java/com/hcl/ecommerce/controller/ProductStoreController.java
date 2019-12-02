@@ -1,0 +1,63 @@
+package com.hcl.ecommerce.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.service.ProductStoreService;
+
+/**
+*
+*  The productStore controller contains two methods
+* @author Anisha
+*
+*/
+@RestController
+@RequestMapping("/storeProducts")
+public class ProductStoreController {
+
+	@Autowired
+	ProductStoreService productStoreService;
+
+	/**
+	 *
+	 * The save method saves the fields in the productStore table.
+	 * @param productStoreDto
+	 * @return
+	 */
+	@PostMapping
+	public ResponseEntity<String> saveProductStoreDetails(@RequestBody ProductStoreDto productStoreDto) {
+		if (productStoreDto.getPrice() == null || productStoreDto.getProductId() == null
+				|| productStoreDto.getStoreId() == null || productStoreDto.getStoreRating() == null) {
+			return new ResponseEntity<>("Not Saved", new HttpHeaders(), HttpStatus.NOT_FOUND);
+		} else {
+			String productStore = productStoreService.saveProductStoreDetails(productStoreDto);
+			return new ResponseEntity<>(productStore, new HttpHeaders(), HttpStatus.OK);
+		}
+
+	}
+
+	/**
+	 * This method will give the reviews of the store.
+	 * @param productId
+	 * @return
+	 */
+
+	@GetMapping
+	public ResponseEntity<List<ProductStoreDto>> storeReviewDetails(@RequestParam Integer productId) {
+		if (productId == null) {
+			return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(productStoreService.storeReview(productId), new HttpHeaders(), HttpStatus.OK);
+
+	}
+
+}

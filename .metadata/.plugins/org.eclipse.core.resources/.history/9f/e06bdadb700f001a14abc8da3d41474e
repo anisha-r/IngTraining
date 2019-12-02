@@ -1,0 +1,57 @@
+package com.hcl.ecommerce.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.Store;
+import com.hcl.ecommerce.entity.StoreReview;
+import com.hcl.ecommerce.repository.ProductRepository;
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+import com.hcl.ecommerce.repository.StoreRepository;
+import com.hcl.ecommerce.repository.StoreReviewRepository;
+
+@Service
+public class ProductStoreServiceImpl implements ProductStoreService{
+	
+	@Autowired
+	ProductStoreRepository productStoreRepository;
+	
+	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
+	StoreRepository storeRepository;
+	
+	@Autowired
+	StoreReviewRepository storeReviewRepository;
+
+
+	@Override
+	public String saveProductStoreDetails(ProductStoreDto productStoreDto) {
+		Product product = productRepository.findByProductId(productStoreDto.getProductId());
+		Store store = storeRepository.findByStoreId(productStoreDto.getStoreId());
+		if(store.getStoreId().equals(productStoreDto.getStoreId())&& product.getProductId().equals(productStoreDto.getProductId())) {
+			ProductStore productStore = new ProductStore();
+			productStore.setProductId(productStoreDto.getProductId());
+			productStore.setStoreId(productStoreDto.getStoreId());
+			productStore.getProductStoreId();
+			productStoreRepository.save(productStore);
+			return "Saved";
+		}		
+		return "Not Saved";
+	}
+
+	@Override
+	public List<StoreReview> storeReview(Integer productId) {
+		ProductStore productStore = productStoreRepository.findByProductId(productId);
+		Integer storeId = productStore.getStoreId();
+		return storeReviewRepository.findByStoreId(storeId);
+	}
+
+	
+}

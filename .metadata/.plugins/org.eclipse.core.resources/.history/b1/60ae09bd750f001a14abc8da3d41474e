@@ -1,0 +1,15 @@
+package com.hcl.ecommerce.service;
+
+import java.util.List;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.StoreReview;
+
+public interface ProductStoreService {
+	
+	String saveProductStoreDetails(ProductStoreDto productStoreDto);
+	
+	 List<ProductStoreDto> storeReview(Integer productId);
+
+}

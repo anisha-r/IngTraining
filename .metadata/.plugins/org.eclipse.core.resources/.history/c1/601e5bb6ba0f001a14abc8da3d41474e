@@ -1,0 +1,49 @@
+package com.hcl.ecommerce.controller;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.service.ProductStoreService;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductStoreControllerTest {
+	
+	@InjectMocks
+	ProductStoreController productStoreController;
+	
+	@Mock
+	ProductStoreService productStoreService;
+	
+	ProductStoreDto productStoreDto =null;
+	List<ProductStoreDto> listProductStores = null;
+	
+	@Test
+	public void saveProductStoreDetails() {
+		productStoreDto = new ProductStoreDto();
+		productStoreDto.setProductId(1);;
+		productStoreDto.setStoreId(1);
+		
+		ProductStore productStore = new ProductStore();
+		productStore.setPrice(productStore.getPrice());
+		productStore.setProductId(productStoreDto.getProductId());
+		productStore.setProductStoreId(1);
+		productStore.setStoreId(productStoreDto.getStoreId());
+		
+		Mockito.when(productStoreService.saveProductStoreDetails(productStoreDto)).thenReturn("Saved");
+		HttpStatus statuscode = productStoreController.saveProductStoreDetails(productStoreDto).getStatusCode();
+		assertEquals(HttpStatus.OK, statuscode);
+	}
+
+
+}

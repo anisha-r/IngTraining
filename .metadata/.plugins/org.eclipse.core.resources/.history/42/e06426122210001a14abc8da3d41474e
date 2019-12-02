@@ -1,0 +1,122 @@
+package com.hcl.ecommerce.service;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.Store;
+import com.hcl.ecommerce.repository.ProductRepository;
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+import com.hcl.ecommerce.repository.StoreRepository;
+import com.hcl.ecommerce.repository.StoreReviewRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductStoreServiceTest {
+
+	@InjectMocks
+	ProductStoreServiceImpl productStoreService;
+
+	@Mock
+	ProductStoreRepository productStoreRepository;
+
+	@Mock
+	StoreRepository storeRepository;
+
+	@Mock
+	ProductRepository productRepository;
+
+	@Mock
+	StoreReviewRepository storeReviewRepository;
+
+	@Test
+	public void saveProductStoreDetailsPostiveTest() {
+		ProductStoreDto productStoreDto = new ProductStoreDto();
+		productStoreDto.setStoreId(2);
+		productStoreDto.setProductId(2);
+		productStoreDto.setPrice(35);
+		productStoreDto.setStoreRating(3);
+
+		Store store = new Store();
+		store.setContactNo(12345678L);
+		store.setStoreId(2);
+		store.setStoreLocation("jiganee");
+		store.setStoreName("abc");
+
+		Product product = new Product();
+		product.setPrice(35);
+		product.setProductId(2);
+		product.setProductName("cde");
+
+		ProductStore productStore = new ProductStore();
+		productStore.setPrice(productStoreDto.getPrice());
+		productStore.setProductId(productStoreDto.getProductId());
+		productStore.setProductStoreId(1);
+
+		Mockito.when(storeRepository.findByStoreId(2)).thenReturn(store);
+		Mockito.when(productRepository.findByProductId(2)).thenReturn(product);
+		Mockito.when(productStoreRepository.save(productStore)).thenReturn(productStore);
+		String result = productStoreService.saveProductStoreDetails(productStoreDto);
+		assertEquals("Saved", result);
+	}
+
+	@Test
+	public void saveProductStoresDetailsNegativeTest() {
+
+		ProductStoreDto productStoreDto = null;
+		Store store = null;
+		Product product = null;
+
+		Mockito.when(storeRepository.findByStoreId(2)).thenReturn(store);
+		Mockito.when(productRepository.findByProductId(2)).thenReturn(product);
+		assertEquals(null, productStoreDto);
+
+	}
+
+	@Test
+	public void storeReviewPositiveTest() {
+		Integer productId = 1;
+		List<ProductStore> productStores = new ArrayList<ProductStore>();
+		ProductStore productStore = new ProductStore();
+		productStore.setPrice(130);
+		productStore.setProductId(1);
+		productStore.getProductStoreId();
+		productStore.setStoreId(2);
+		productStores.add(productStore);
+		List<ProductStore> list1 = new ArrayList<>();
+		list1.add(productStore);
+
+		Mockito.when(productStoreRepository.findByProductId(productId)).thenReturn(productStores);
+		List<ProductStoreDto> listProductStoreDtos = new ArrayList<>();
+		ProductStoreDto productStoreDto = new ProductStoreDto();
+		productStoreDto.setPrice(productStore.getPrice());
+		productStoreDto.setProductId(productId);
+		productStoreDto.setStoreId(productStore.getStoreId());
+		Mockito.when(storeReviewRepository.findByStoreId(productStore.getStoreId())).thenReturn(2);
+		productStoreDto.setStoreRating(4);
+		listProductStoreDtos.add(productStoreDto);
+		List<ProductStoreDto> result = productStoreService.storeReview(productId);
+		assertEquals(1, result.size());
+	}
+
+	@Test
+	public void storeReviewNegativeTest() {
+
+		Integer productId = null;
+
+		Mockito.when(productStoreRepository.findByProductId(1)).thenReturn(null);
+		assertEquals(null, productId);
+
+	}
+
+}

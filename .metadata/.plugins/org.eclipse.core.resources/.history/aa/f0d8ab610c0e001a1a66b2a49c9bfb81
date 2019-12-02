@@ -1,0 +1,23 @@
+package com.hcl.ecommerce.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "product_store")
+public class ProductStore {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer product_store_id;
+	private Integer product_id;
+	private Integer store_id;
+
+}

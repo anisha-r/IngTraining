@@ -1,0 +1,27 @@
+package com.hcl.ecommerce.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.entity.StoreReview;
+import com.hcl.ecommerce.repository.StoreReviewRepository;
+
+@Service
+public class StoreReviewServiceImpl implements StoreReviewService{
+
+@Autowired
+StoreReviewRepository storeReviewRepository;
+
+@Override
+public String storeReview(Integer storeId) {
+	StoreReview storeReview = storeReviewRepository.findByStoreId(storeId);
+	storeReview.getRating();
+	storeReview.getStoreId();
+	storeReview.getUserId();
+	return null;
+}
+
+
+}
+
+

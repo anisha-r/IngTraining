@@ -1,0 +1,35 @@
+package com.hcl.ecommerce.service;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import com.hcl.ecommerce.dto.StoreDto;
+import com.hcl.ecommerce.entity.Store;
+import com.hcl.ecommerce.repository.StoreRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class StoreServiceTest {
+	
+	@InjectMocks
+	StoreServiceImpl storeService;
+	
+	@Mock
+	StoreRepository storeRepository;
+	
+	@Test
+	public void saveProductDetailsPositiveTest()    {
+		 StoreDto storeDto = new StoreDto();
+		    storeDto.setStoreLocation("jiganee");
+	     when(storeRepository.findByStoreLocation(storeDto.getStoreLocation())).thenReturn(new Store());
+	     storeService.saveStoreDetails(storeDto);
+	     assertEquals("jiganee", storeDto.getStoreLocation());
+	     assertNotNull(storeDto);
+	}
+	
+ 
+}

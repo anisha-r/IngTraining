@@ -1,0 +1,46 @@
+package com.hcl.ecommerce.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.Store;
+import com.hcl.ecommerce.repository.ProductRepository;
+import com.hcl.ecommerce.repository.ProductStoreRepository;
+import com.hcl.ecommerce.repository.StoreRepository;
+
+@Service
+public class ProductStoreServiceImpl implements ProductStoreService{
+	
+	@Autowired
+	ProductStoreRepository productStoreRepository;
+	
+	@Autowired
+	ProductRepository productRepository;
+	
+	@Autowired
+	StoreRepository storeRepository;
+
+	@Override
+	public String saveProductStoreDetails(ProductStoreDto productStoreDto) {
+		Product product = productRepository.findByProductId(productStoreDto.getProductId());
+		Store store = storeRepository.findByStoreId(productStoreDto.getStoreId());
+		if(store.getStoreId()== productStoreDto.getStoreId()&& product.getProductId()==productStoreDto.getProductId()) {
+			ProductStore productStore = new ProductStore();
+			productStore.setProductId(productStoreDto.getProductId());
+			productStore.setStoreId(productStoreDto.getStoreId());
+			productStore.getProductStoreId();
+			productStoreRepository.save(productStore);
+			return "Saved";
+		}		
+		return "Not Saved";
+	}
+
+	
+}

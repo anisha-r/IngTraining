@@ -1,0 +1,105 @@
+package com.hcl.ecommerce.controller;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+
+import com.hcl.ecommerce.dto.ProductStoreDto;
+import com.hcl.ecommerce.entity.ProductStore;
+import com.hcl.ecommerce.entity.StoreReview;
+import com.hcl.ecommerce.service.ProductStoreService;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductStoreControllerTest {
+	
+	@InjectMocks
+	ProductStoreController productStoreController;
+	
+	@Mock
+	ProductStoreService productStoreService;
+	
+	ProductStoreDto productStoreDto =null;
+	
+	@Test
+	public void saveProductStoreDetailsPositiveTest() {
+		productStoreDto = new ProductStoreDto();
+		productStoreDto.setProductId(1);
+		productStoreDto.setStoreId(1);
+		productStoreDto.setPrice(250);
+		productStoreDto.setStoreRating(4);
+		
+		ProductStore productStore = new ProductStore();
+		productStore.setPrice(productStore.getPrice());
+		productStore.setProductId(productStoreDto.getProductId());
+		productStore.setProductStoreId(1);
+		productStore.setStoreId(productStoreDto.getStoreId());
+		
+		Mockito.when(productStoreService.saveProductStoreDetails(productStoreDto)).thenReturn("Saved");
+		HttpStatus statuscode = productStoreController.saveProductStoreDetails(productStoreDto).getStatusCode();
+		assertEquals(HttpStatus.OK, statuscode);
+	}
+
+	
+	@Test
+	public void reviewStoreDetailsPositiveTest() {
+		Integer productId = 1;
+		StoreReview storeReview = new StoreReview();
+		storeReview.setRating(1);
+		storeReview.setReviewId(1);
+		storeReview.setStoreId(1);
+		storeReview.setUserId(1);
+		
+		ProductStoreDto productStoreDto= new ProductStoreDto();
+		productStoreDto.setPrice(1);
+		productStoreDto.setProductId(1);
+		productStoreDto.setStoreId(storeReview.getStoreId());
+		productStoreDto.setStoreRating(storeReview.getRating());
+		
+		List<ProductStoreDto> list = new ArrayList<>();
+		list.add(productStoreDto);
+		
+		Mockito.when(productStoreService.storeReview(productId)).thenReturn(list);
+		HttpStatus statuscode = productStoreController.storeReviewDetails(productId).getStatusCode();
+		assertEquals(HttpStatus.OK, statuscode);
+	}
+		
+		@Test
+		public void reviewStoreDetailsNegativeTest() {
+			Object actual;
+		
+			Integer productId = null;
+			StoreReview storeReview = new StoreReview();
+			storeReview.setRating(1);
+			storeReview.setReviewId(1);
+			storeReview.setStoreId(1);
+			storeReview.setUserId(1);
+			
+			ProductStoreDto productStoreDto= new ProductStoreDto();
+			productStoreDto.setPrice(1);
+			productStoreDto.setProductId(productId);
+			productStoreDto.setStoreId(storeReview.getStoreId());
+			productStoreDto.setStoreRating(storeReview.getRating());
+			
+			List<ProductStoreDto> list = new ArrayList<>();
+			list.add(productStoreDto);
+			
+			Mockito.when(productStoreService.storeReview(productId)).thenReturn(list);
+			HttpStatus statuscode = productStoreController.storeReviewDetails(productId).getStatusCode();
+			assertEquals(HttpStatus.NOT_FOUND, statuscode);
+		
+			actual=productStoreController.storeReviewDetails(productId).getBody();
+			assertEquals(null, actual);
+		
+	}
+	
+
+}

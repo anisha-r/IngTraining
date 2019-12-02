@@ -1,0 +1,81 @@
+package com.hcl.ecommerce.service;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import com.hcl.ecommerce.dto.ProductDto;
+import com.hcl.ecommerce.entity.Product;
+import com.hcl.ecommerce.exception.ProductNotFoundException;
+import com.hcl.ecommerce.repository.ProductRepository;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductServiceTest {
+	
+	@InjectMocks
+	ProductServiceImpl productService;
+	
+	@Mock
+	ProductRepository productRepository;
+	
+	@Test
+	public void saveProductDetailsPositiveTest()    {
+		ProductDto productDto = new ProductDto();
+		productDto.setProductName("ani");
+		productDto.setPrice(250);
+		
+		Product product = new Product();
+		product.setPrice(productDto.getPrice());
+		product.getProductId();
+		product.setProductName(productDto.getProductName());
+		
+		
+	     when(productRepository.findByProductName("ani")).thenReturn(new Product());
+	     String result = productService.saveProductDetails(productDto);
+	     assertEquals("Saved", result);
+	     assertNotNull(productDto);
+	}
+	
+	@Test
+	public void saveProductDetailsNegativeTest()    {
+		ProductDto productDto = null;
+	     String result = productService.saveProductDetails(productDto);
+	     assertEquals("Not Saved", result);
+	     assertNull(productDto);
+	}
+	
+	@Test
+	public void searchProductDetailsPositiveTest() {
+		 ProductDto productDto = new ProductDto();
+		 productDto.setProductName("pen");
+		 Product product = new Product();
+		 product.setProductName(productDto.getProductName());
+		 when(productRepository.findByProductName(product.getProductName())).thenReturn(new Product());
+	     try {
+			productService.searchProductDetails(product.getProductName());
+		} catch (ProductNotFoundException e) {
+			productDto.getProductName();
+			e.printStackTrace();
+		}
+	     assertEquals("pen", productDto.getProductName());
+	     assertNotNull(product);
+	
+	}
+	
+	@Test
+	public void searchProductDetailsNegativeTest() throws ProductNotFoundException {
+		 Product product = null;
+		 when(productRepository.findByProductName("acx")).thenReturn(new Product());
+			productService.searchProductDetails(product.getProductName());
+			assertNull(product);
+		}
+	   
+	
+	
+
+}

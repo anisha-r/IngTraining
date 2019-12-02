@@ -1,0 +1,46 @@
+package com.hcl.ecommerce.controller;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+
+import com.hcl.ecommerce.dto.ProductDto;
+import com.hcl.ecommerce.service.ProductService;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
+public class ProductControllerTest {
+	
+
+	@InjectMocks
+	ProductController productController;
+	
+	@Mock
+	ProductService productService;
+	
+	ProductDto product =null;
+	List<ProductDto> listProducts = null;
+	
+	@Test
+	public void saveProductDetailsTest() {
+		Object actual;
+		product=new ProductDto();
+		product.setPrice(250.0);
+		product.setProductName("pendrive");
+		listProducts=new ArrayList<ProductDto>();
+		listProducts.add(product);
+		HttpStatus statuscode=productController.saveProductDetails(product).getStatusCode();
+		assertEquals(HttpStatus.OK, statuscode);
+	}
+	
+	
+	
+
+}

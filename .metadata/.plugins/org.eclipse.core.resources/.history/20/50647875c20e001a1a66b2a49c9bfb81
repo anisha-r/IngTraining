@@ -1,0 +1,13 @@
+package com.hcl.ecommerce.exception;
+
+public class StoreIdNotFoundException extends Exception {
+		
+		public StoreIdNotFoundException(String exception) {
+			super(exception);
+		}
+
+		private static final long serialVersionUID = 1L;
+
+	}
+
+

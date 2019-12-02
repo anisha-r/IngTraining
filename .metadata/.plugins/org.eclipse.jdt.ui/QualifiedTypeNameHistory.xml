@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.service.UserService"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.entity.User"/>
+<fullyQualifiedTypeName name="org.mockito.InjectMocks"/>
+<fullyQualifiedTypeName name="org.mockito.Mock"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.service.ProductService"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.service.StoreService"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.dto.StoreDto"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.service.ProductStoreService"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.repository.ProductStoreRepository"/>
+<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+<fullyQualifiedTypeName name="org.apache.velocity.runtime.directive.Foreach"/>
+<fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.dto.ProductDto"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.repository.StoreRepository"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.repository.ProductRepository"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.repository.StoreReviewRepository"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.entity.Store"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.entity.StoreReview"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.dto.ProductStoreDto"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.entity.ProductStore"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.mockito.Mockito"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.hcl.ecommerce.entity.Product"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+</qualifiedTypeNameHistroy>

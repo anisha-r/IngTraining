@@ -1,0 +1,9 @@
+package com.hcl.ecommerce.service;
+
+import com.hcl.ecommerce.dto.ProductDto;
+
+public interface ProductService {
+	
+	String saveProductDetails(ProductDto productDto);
+
+}
